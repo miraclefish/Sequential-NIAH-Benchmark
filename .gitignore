@@ -1,0 +1,11 @@
+raw_data/
+
+Claude/
+Gemini/
+GPT4o/
+GPT4o-mini/
+
+check_all_model_answer.py
+check_all_testdata.py
+
+*backend.jsonl
