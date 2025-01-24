@@ -172,15 +172,15 @@ if __name__ == '__main__':
                 for i in range(sample_num):
 
                     if i < 3:
-                        # 制造微小位置噪声
+                        # make Tiny Movement
                         input_content, text_with_needles = make_little_moving(needles, input_text_list, text_list, lang, start_idx)
                         noise_type = 'little_moving'
                     elif i < 6:
-                        # 制造较大位置噪声
+                        # make Significant Movement
                         input_content, text_with_needles = make_large_moving(needles, input_text_list, text_list, lang, start_idx)
                         noise_type = 'large_moving'
                     else:
-                        # 制造顺序噪声
+                        # make Reordering
                         random.shuffle(needles)
                         while anchor_needles == needles:
                             random.shuffle(needles)
