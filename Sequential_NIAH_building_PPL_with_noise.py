@@ -52,19 +52,19 @@ def check_moving_idx_box(str_list, lang):
     index_boxes = {}
     for i, (id, cut_id) in enumerate(zip(indices, cut_idx_list)):
         if index_boxes:
-            # 当前box的最小值
+            # minimum of the current box
             min_current = period_positions[max(id-3, 0)]
-            # 上一个box的最大值
+            # maximum of the previous box
             max_pre = index_boxes[cut_idx_list[i-1]][-1]
             if max_pre < min_current:
-                # 如果没有重叠，直接添加box
+                # if not overlapped, then the current box is added directly
                 index_boxes[cut_id] = period_positions[max(id-3, 0):id+3+1]
             else:
-                # 临界id
+                # bound_id
                 bound_id = (max(id-3, 0) + (indices[i-1] + 3 + 1)) // 2
-                #如果重叠了，上一个box调整最大值
+                # if overlapped, then the maximun value of previous box is adjusted
                 index_boxes[cut_idx_list[i-1]] = period_positions[max(indices[i-1]-3, 0):bound_id+1]
-                #当前box调整最小值
+                # if overlapped, then the minimum value of current box is adjusted
                 index_boxes[cut_id] = period_positions[bound_id+1:id+3]
 
         else:
